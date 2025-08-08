@@ -22,6 +22,7 @@ const App = () => {
 	];
 
 	const [stack, setStack] = useState([]);
+	const [burger, setBurger] = useState([...availableIngredients]);
 
 	const addToBurger = (event) => {
 		console.log(event);
@@ -36,7 +37,7 @@ const App = () => {
 			<h1>Burger Stacker</h1>
 			<section>
 				<IngredientList availableIngredients={availableIngredients} />
-				<BurgerStack />
+				<BurgerStack burger={burger} />
 			</section>
 		</main>
 	);
