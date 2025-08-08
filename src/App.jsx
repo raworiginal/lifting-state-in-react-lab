@@ -21,23 +21,30 @@ const App = () => {
 		{ name: "Swiss Cheese", color: "#F1E1A8" },
 	];
 
-	const [stack, setStack] = useState([]);
-	const [burger, setBurger] = useState([...availableIngredients]);
+	const [stack, setStack] = useState();
+	const [burger, setBurger] = useState([]);
 
-	const addToBurger = (event) => {
-		console.log(event);
+	const addToBurger = (ingredient) => {
+		setBurger([...burger, ingredient]);
 	};
+	//
 
-	const removeFromBurger = (event) => {
-		console.log(event);
+	const removeFromBurger = (targetIngredient) => {
+		const newBurger = burger.filter((ingredient) => {
+			return targetIngredient !== ingredient;
+		});
+		setBurger(newBurger);
 	};
 
 	return (
 		<main>
 			<h1>Burger Stacker</h1>
 			<section>
-				<IngredientList availableIngredients={availableIngredients} />
-				<BurgerStack burger={burger} />
+				<IngredientList
+					availableIngredients={availableIngredients}
+					addToBurger={addToBurger}
+				/>
+				<BurgerStack burger={burger} removeFromBurger={removeFromBurger} />
 			</section>
 		</main>
 	);
